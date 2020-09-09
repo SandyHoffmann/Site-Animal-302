@@ -1,0 +1,5 @@
+Flask
+SQLAlchemy
+Bcrypt
+Flask-LoginManager
+Mail
