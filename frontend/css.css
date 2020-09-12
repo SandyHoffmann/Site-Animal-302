@@ -1,0 +1,42 @@
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+/* Other Classes for Page Styling */
+
+body {
+  background: #9ACDD9;
+  background-image: url('image/wallpaper.png');
+  
+}
+
+p,h1,h2,td,th,a{
+  font-family: 'Grandstander', cursive;
+}
+
+main {
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: black;
+    opacity: 0.6;
+
+}
+
+.mastfoot{
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+.table{
+  color:white;
+}
+
+h1{
+  color:white;
+}
