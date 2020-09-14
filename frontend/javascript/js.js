@@ -11,13 +11,59 @@ $(function() {
     });
 
     function listar_animal(animal) {
+        
         for (var i in animal) { 
-            lin = '<tr>' + 
-              '<td>' + animal[i].nome_animal + '</td>' + 
-              '<td>' + animal[i].altura_media + '</td>' + 
-              '<td>' + animal[i].peso_medio + '</td>' + 
-              '</tr>';
-            $('#corpoTabelaAnimal').append(lin);
+            if (animal[i].conteudo){
+                conteudo = animal[i].conteudo
+            }
+            else{
+                conteudo = ' Não há o que mostrar aqui :3 '
+            }
+            lin ='<div class="col-md-auto-p-0 border border rounded-lg" id="tabela"style="background-color: #A39BE8;">'+
+                '<h5 style="padding: 5px;"class="rounded">'+animal[i].nome_animal+'</h5>'+
+                '<div class="row " >'+
+                    '<div class="col-md-auto" style="background-color: #CAABFF;">'+
+                    '<img src="image/logo.png" style="width: 200px;">'+
+                    '</div>'+
+                    '<div class="col" style="background-color: #ABE5FF";>'+   
+                    '<p>'+conteudo+'</p>'+   
+                    '</div>'+
+                    '<div class="col" style="background-color: #9BBCE8;">'+
+                    '<div class="row">'+
+
+                    '</div>'+
+                    '<div class="col-p-0">'+
+                    '<div class="row" style="background-color: #B8C4FF;margin-bottom: 0px;padding:10px;">'+
+                        '<p>Família Cíentifica</p>'+
+                        '<div class="row-md-auto">'+
+                            '<p> - ' + animal[i].familia + '</p>' +
+                        '</div>' +
+                    '</div>'+
+                    '<div class="row" style="margin-bottom: 0px;padding:10px;">'+
+                        '<p>Habitat</p>'+
+                        '<div class="row-md-auto">'+
+                        '<p> - ' + animal[i].habitat + '</p>' +
+                    '</div>' +
+                    '</div>'+
+                    '<div class="row" style="background-color: #B8C4FF;margin-bottom: 0px;padding:10px;">'+
+                        '<p> Altura Média</p>'+
+                        '<div class="row-md-auto">'+
+                        '<p> - ' + animal[i].altura_media + '</p>' +
+                    '</div>' +
+                    '</div>'+
+                    '<div class="row" style="margin-bottom: 0px;padding:10px;">'+
+                        '<p>Peso Médio</p>'+
+                        '<div class="row-md-auto">'+
+                        '<p> - ' + animal[i].peso_medio + '</p>' +
+                    '</div>' +
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '</div>'+
+            '</div>'+
+            '</div>'+
+            '<br>'
+            $('#familiaver').append(lin);
         }
     }
 
@@ -60,6 +106,7 @@ $("#incluir_animal").click(function(){
     function erroincluir_animal(resposta){
         alert('Algo não correu bem, deuruim :p');
     }
+    
 });
 
 });

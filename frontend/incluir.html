@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="css.css" type="text/css" rel="stylesheet"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@100&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <title>Flasksite</title>
     <style>
@@ -39,7 +41,28 @@
     </style>
 
 </head>
-<body class = "p-5">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img class = "navbar-brand" src="image/logo.png" width="50px">  
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="listar_animal.html">Animais Listados</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="incluir.html">Incluir Animal </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <main class="conteiner" id="familiaform">
 
 <form class="form border border-info rounded" id="form_incluir">
     <div class="form-group p-5">
@@ -70,6 +93,7 @@
 
     </div>
 </form>
+</main>
 <footer id="sticky-footer" class="py-4 text-white-50">
     <div class="container text-center">
     <small>Copyright &copy; Mundo Animal</small>

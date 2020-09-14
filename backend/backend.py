@@ -1,6 +1,6 @@
 from config import *
 from flask import jsonify, request
-
+from PIL import Image
 @app.route("/",methods=['GET','POST'])
 def home():
     return render_template('template/base.html', titulo='AnimeWebSite')
@@ -19,6 +19,7 @@ def incluir_animal():
     dados=request.get_json(force=True)
     try:
         novo_animal=Animal(**dados)
+        print(dados)
         db.session.add(novo_animal)
         db.session.commit()
     except Exception as e: 
@@ -27,6 +28,7 @@ def incluir_animal():
     return resposta
 
 app.run(debug=True)
+
 
 """
 from config import *
