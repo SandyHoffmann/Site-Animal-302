@@ -19,13 +19,13 @@ $(function() {
             else{
                 conteudo = ' Não há o que mostrar aqui :3 '
             }
-            lin ='<div class="col-md-auto-p-0 border border rounded-lg" id="tabela"style="background-color: #A39BE8;">'+
+            lin ='<div class="col-md-auto-p-0 border border" id="tabela"style="background-color: #A39BE8;outline-style: double; outline-color: white; ">'+
                 '<h5 style="padding: 5px;"class="rounded">'+animal[i].nome_animal+'</h5>'+
                 '<div class="row " >'+
                     '<div class="col-md-auto" style="background-color: #CAABFF;">'+
                     '<img src="image/logo.png" style="width: 200px;">'+
                     '</div>'+
-                    '<div class="col" style="background-color: #ABE5FF";>'+   
+                    '<div class="col" style="background-color: #ABE5FF"; id="conteudo">'+   
                     '<p>'+conteudo+'</p>'+   
                     '</div>'+
                     '<div class="col" style="background-color: #9BBCE8;">'+
@@ -93,10 +93,17 @@ $("#incluir_animal").click(function(){
     });
 
     function incluir_animal(resposta){
-        alert('ado aado cada um no seu quadrado');
         alert(resposta.detalhes)
         if (resposta.resultado == 'bele'){
             alert('Parabens, você cadastrou um novo animal! ');
+            $("#nome_animal").val("");
+            $("#familia").val("");
+            $("#altura_media").val("");
+            $("#peso_medio").val("");
+            $("#habitat").val("");
+            $("#conteudo").val("");
+            $("#imagem_postagem").val("");
+
         }
         else{
             alert('Algo não correu bem, tente novamente :p');

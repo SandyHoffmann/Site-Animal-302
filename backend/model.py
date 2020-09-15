@@ -32,8 +32,10 @@ class Animal(db.Model):
         
 if __name__ == "__main__":
     db.create_all()
+    """
     novo = Animal(nome_animal = "cachorro",familia = 'Canis Lupus',altura_media = 90,peso_medio = 6,habitat = 'cidade',conteudo = 'cachorro tradicional',imagem_postagem = None)
     novo2 = Animal(nome_animal = "gato",familia = 'Felix Cat',altura_media = 60,peso_medio = 4,habitat = 'cidade',conteudo = 'miau miau miau',imagem_postagem = None)
     db.session.add(novo)
     db.session.add(novo2)
     db.session.commit()
+"""

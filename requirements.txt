@@ -3,3 +3,4 @@ SQLAlchemy
 Bcrypt
 Flask-LoginManager
 Mail
+Pillow

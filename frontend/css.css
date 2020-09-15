@@ -51,4 +51,13 @@ h1{
 
 form{
   background-color: rgb(245, 245, 220,0.8);
+  background-image: url('image/flor.png');
+}
+
+#conteudo{
+  background-image: url('image/cross.png');
+}
+#tabela{
+  background-image: url('image/topo.png');
+
 }

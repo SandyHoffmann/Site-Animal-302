@@ -1,9 +1,6 @@
 from config import *
 from flask import jsonify, request
 from PIL import Image
-@app.route("/",methods=['GET','POST'])
-def home():
-    return render_template('template/base.html', titulo='AnimeWebSite')
 
 @app.route("/listar_animal")
 def animais():
