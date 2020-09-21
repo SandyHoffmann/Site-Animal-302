@@ -48,13 +48,13 @@ $(function() {
                     '<div class="row" style="background-color: #B8C4FF;margin-bottom: 0px;padding:10px;">'+
                         '<p> Altura Média</p>'+
                         '<div class="row-md-auto">'+
-                        '<p> - ' + animal[i].altura_media + '</p>' +
+                        '<p> - ' + animal[i].altura_media + ' metros.</p>' +
                     '</div>' +
                     '</div>'+
                     '<div class="row" style="margin-bottom: 0px;padding:10px;">'+
                         '<p>Peso Médio</p>'+
                         '<div class="row-md-auto">'+
-                        '<p> - ' + animal[i].peso_medio + '</p>' +
+                        '<p> - ' + animal[i].peso_medio + ' kilos.</p>' +
                     '</div>' +
                     '</div>'+
                 '</div>'+
