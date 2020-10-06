@@ -1,7 +1,7 @@
 from config import *
 from flask import jsonify, request
 from PIL import Image
-
+import os,io
 @app.route("/listar_animal")
 def animais():
     animais = db.session.query(Animal).all()
@@ -14,13 +14,16 @@ def animais():
 def incluir_animal():
     resposta=jsonify({"resultado": "bele", "detalhes": "supimpa, vc conseguiu"})
     dados=request.get_json(force=True)
-    try:
-        novo_animal=Animal(**dados)
-        print(dados)
-        db.session.add(novo_animal)
-        db.session.commit()
-    except Exception as e: 
-        resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
+    animal_repetido = Animal.query.filter_by(nome_animal=dados['nome_animal'].capitalize()).first()
+    if animal_repetido:
+        resposta = jsonify({"resultado":"erro", "detalhes":"Animal com nome repetido"})
+    else: 
+        try:
+            novo_animal=Animal(**dados)
+            db.session.add(novo_animal)
+            db.session.commit()
+        except Exception as e: 
+            resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
     resposta.headers.add("Access-Control-Allow-Origin", "*") 
     return resposta
 
