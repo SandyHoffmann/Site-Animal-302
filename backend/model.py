@@ -16,7 +16,7 @@ class Animal(db.Model):
     conteudo = db.Column(db.Text,nullable = False)
     imagem_postagem = db.Column(db.String(40), nullable = True)
     def __str__(self):
-        return str(self.nome_animal)+" ,"+self.familia+" ,"+ self.altura_media +" ,"+self.peso_medio+" ,"+self.habitat+" ,"+self.conteudo+" ,"+self.imagem_postagem+","
+        return self.id+ str(self.nome_animal)+" ,"+self.familia+" ,"+ self.altura_media +" ,"+self.peso_medio+" ,"+self.habitat+" ,"+self.conteudo+" ,"+self.imagem_postagem
     
     def json(self):
         return {

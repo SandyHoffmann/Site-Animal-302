@@ -1,7 +1,5 @@
 from config import *
-from flask import jsonify, request
-from PIL import Image
-import os,io
+
 @app.route("/listar_animal")
 def animais():
     animais = db.session.query(Animal).all()
@@ -24,6 +22,22 @@ def incluir_animal():
             db.session.commit()
         except Exception as e: 
             resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
+    resposta.headers.add("Access-Control-Allow-Origin", "*") 
+    return resposta
+
+@app.route('/excluir_animal/<int:animal_id>',methods=['DELETE'])
+def excluir_animal(animal_id):
+    resposta=jsonify({"resultado": "bele", "detalhes": "supimpa, vc conseguiu"})
+    animal = Animal()
+    print(Animal.query.filter_by(nome_animal="gato"))
+    print("a")
+    print(animal_id)
+    print()
+    try:
+        Animal.query.filter_by(id=animal_id).delete()
+        db.session.commit()
+    except Exception as e:
+        resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
     resposta.headers.add("Access-Control-Allow-Origin", "*") 
     return resposta
 

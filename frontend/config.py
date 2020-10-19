@@ -10,5 +10,5 @@ CORS(app)
 path = os.path.dirname(os.path.abspath(__file__)) 
 arquivobd = os.path.join(path, 'animal.db') 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+arquivobd 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True 
 db = SQLAlchemy(app)

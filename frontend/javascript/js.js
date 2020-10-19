@@ -1,4 +1,4 @@
-$(function() { 
+$(function(){ 
     
     $.ajax({
         url: 'http://localhost:5000/listar_animal',
@@ -30,7 +30,6 @@ $(function() {
                     '</div>'+
                     '<div class="col" style="background-color: #9BBCE8;">'+
                     '<div class="row">'+
-
                     '</div>'+
                     '<div class="col-p-0">'+
                     '<div class="row" style="background-color: #B8C4FF;margin-bottom: 0px;padding:10px;">'+
@@ -56,6 +55,10 @@ $(function() {
                         '<div class="row-md-auto">'+
                         '<p> - ' + animal[i].peso_medio + ' kilos.</p>' +
                     '</div>' +
+                    '<div class="row" style="margin-bottom: 0px;padding:10px;">'+
+                    '<div class="row-md-auto">'+
+                    '<a href=# id="excluir_' + animal[i].id + '"'+'class="excluir_animal">Delete</a>' +
+                '</div>' +
                     '</div>'+
                 '</div>'+
             '</div>'+
@@ -64,8 +67,8 @@ $(function() {
             '</div>'+
             '<br>'
             $('#familiaver').append(lin);
-        }
-    }
+        };
+    };
 
 $("#incluir_animal").click(function(){
 
@@ -80,7 +83,7 @@ $("#incluir_animal").click(function(){
     dados = JSON.stringify({nome_animal:nome_animal, familia:familia,
         altura_media:altura_media, peso_medio:peso_medio,
         habitat:habitat,
-         conteudo:conteudo, imagem_postagem:imagem_postagem});
+        conteudo:conteudo, imagem_postagem:imagem_postagem});
 
     $.ajax({
         url: 'http://localhost:5000/incluir_animal',
@@ -93,7 +96,7 @@ $("#incluir_animal").click(function(){
     });
 
     function incluir_animal(resposta){
-        alert(resposta.detalhes)
+        alert(resposta.detalhes);
         if (resposta.resultado == 'bele'){
             alert('Parabens, você cadastrou um novo animal! ');
             $("#nome_animal").val("");
@@ -116,68 +119,30 @@ $("#incluir_animal").click(function(){
     
 });
 
-});
-/*
-$(function() { 
-    
-    $.ajax({
-        url: 'http://localhost:5000/listar_animal',
-        method: 'GET',
-        dataType: 'json', 
-        success: listar_animal, 
-        error: function() {
-            alert("Deu erro");
-        }
-    });
+$(document).on("click",".excluir_animal",function(){
 
-    function listar_animal(animal) {
-        for (var i in animal) { 
-            lin = '<tr>' + 
-              '<td>' + animal[i].nome_animal + '</td>' + 
-              '<td>' + animal[i].altura_media + '</td>' + 
-              '<td>' + animal[i].peso_medio + '</td>' + 
-              '</tr>';
-            $('#corpoTabelaAnimal').append(lin);
-        }
-    }
-
-$("#incluir_animal").click(function(){
-
-    nome_animal = $("nome_animal").val();
-    familia_animal = $("familia_animal").val();
-    altura_media = $("altura_media").val();
-    peso_medio = $("peso_medio").val();
-    conteudo = $("conteudo").val();
-    imagem = $("imagem").val();
-
-    dados = JSON.stringify({nome_animal:nome_animal, familia_animal:familia_animal,
-        altura_media:altura_media, peso_medio:peso_medio, conteudo:conteudo, imagem:imagem});
+    var clicado = $(this).attr('id');
+    var nome = "excluir_";
+    var id_animal = clicado.substring(nome.length);
 
     $.ajax({
-        url: 'http://localhost:5000/incluir_animal',
-        method: 'POST',
-        contentType: 'application/json', 
+        url: 'http://localhost:5000/excluir_animal/'+id_animal,
+        type: 'DELETE',
         dataType: 'json',
-        data: dados,
-        success: incluir_animal, 
-        error: erroincluir_animal
+        success: animalExcluido, 
+        error: erroAoExcluir    
     });
 
-    function incluir_animal(resposta){
-        alert('ado aado cada um no seu quadrado');
-
+    function animalExcluido(resposta){
         if (resposta.resultado == 'bele'){
-            alert('Parabens, você cadastrou um novo animal! ');
+            alert("Animal exluido com sucesso!");
         }
         else{
-            alert('Algo não correu bem, tente novamente :p');
+            alert(resposta.detalhes);
         }
     }
-    
-    function erroincluir_animal(resposta){
-        alert('Algo não correu bem, deuruim :p');
+    function erroAoExcluir(resposta){
+        alert("Erro ao excluir"+resposta.detalhes);
     }
 });
-
-});
-*/
+}); 
