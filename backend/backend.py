@@ -28,13 +28,10 @@ def incluir_animal():
 @app.route('/excluir_animal/<int:animal_id>',methods=['DELETE'])
 def excluir_animal(animal_id):
     resposta=jsonify({"resultado": "bele", "detalhes": "supimpa, vc conseguiu"})
-    animal = Animal()
-    print(Animal.query.filter_by(nome_animal="gato"))
-    print("a")
-    print(animal_id)
-    print()
+
     try:
-        Animal.query.filter_by(id=animal_id).delete()
+        animal = Animal.query.get_or_404(animal_id)
+        db.session.delete(animal)
         db.session.commit()
     except Exception as e:
         resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
