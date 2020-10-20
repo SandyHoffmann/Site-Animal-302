@@ -55,12 +55,10 @@ $(function(){
                         '<div class="row-md-auto">'+
                         '<p> - ' + animal[i].peso_medio + ' kilos.</p>' +
                     '</div>' +
-                    '<div class="row" style="margin-bottom: 0px;padding:10px;">'+
-                    '<div class="row-md-auto">'+
-                    '<a href=# id="excluir_' + animal[i].id + '"'+'class="excluir_animal">Delete</a>' +
-                '</div>' +
                     '</div>'+
-                '</div>'+
+                    '<div class="row" style="background-color: #B8C4FF;margin-bottom: 0px;padding:10px;">'+
+                    '<a href=# id="excluir_' + animal[i].id + '"'+'class="excluir_animal" style="color: red;"><p><b>Delete</b></p></a>' +
+                    '</div>'+
             '</div>'+
             '</div>'+
             '</div>'+
@@ -136,6 +134,7 @@ $(document).on("click",".excluir_animal",function(){
     function animalExcluido(resposta){
         if (resposta.resultado == 'bele'){
             alert("Animal exluido com sucesso!");
+            location.reload();
         }
         else{
             alert(resposta.detalhes);
