@@ -3,6 +3,7 @@ from PIL import Image
 import base64
 import os, io
 import secrets
+from flask import jsonify
 
 @app.route("/listar_animal")
 def animais():
@@ -11,6 +12,24 @@ def animais():
     manda = jsonify(animaisjs)
     manda.headers.add("Access-Control-Allow-Origin", "*") 
     return manda
+    
+@app.route("/listar_cuidador")
+def cuidador():
+    cuidador = db.session.query(Cuidador).all()
+    cuidadorjs = [ x.json() for x in cuidador ]
+    b = jsonify(cuidadorjs)
+    b.headers.add("Access-Control-Allow-Origin", "*") 
+    return b
+
+@app.route("/listar_zoologico")
+def zoo():
+    zoo = db.session.query(Zoologico).all()
+    zoojs = [ x.json() for x in zoo ]
+    a = jsonify(zoojs)
+    a.headers.add("Access-Control-Allow-Origin", "*") 
+    return a
+
+
 
 @app.route('/incluir_animal',methods=['post'])
 def incluir_animal():
