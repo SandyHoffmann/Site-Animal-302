@@ -1,4 +1,8 @@
 from config import *
+from PIL import Image
+import base64
+import os, io
+import secrets
 
 @app.route("/listar_animal")
 def animais():
@@ -18,13 +22,32 @@ def incluir_animal():
     else: 
         try:
             novo_animal=Animal(**dados)
+            if (dados["imagem_postagem"] != None):
+                novo_animal.imagem_postagem=salvar_imagem_base64('/imagens',(dados["imagem_postagem"]))
             db.session.add(novo_animal)
             db.session.commit()
         except Exception as e: 
             resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
     resposta.headers.add("Access-Control-Allow-Origin", "*") 
     return resposta
+    
+def salvar_imagem_base64(diretorio, base64str):
+    
+    rhex = secrets.token_hex(9)
+    nome_foto = rhex + ".png"
+    print(nome_foto)
+    caminho = os.path.join(app.root_path, diretorio, nome_foto)
+    tamanho_imagem = (200, 200)
+    
+    image = base64.b64decode(str(base64str)) 
+    
+    imagem_menor = Image.open(io.BytesIO(image))
+    imagem_menor.thumbnail(tamanho_imagem)
+    imagem_menor.save(caminho)
+    
+    return nome_foto
 
+    
 @app.route('/excluir_animal/<int:animal_id>',methods=['DELETE'])
 def excluir_animal(animal_id):
     resposta=jsonify({"resultado": "bele", "detalhes": "supimpa, vc conseguiu"})
@@ -39,6 +62,7 @@ def excluir_animal(animal_id):
     return resposta
 
 app.run(debug=True)
+
 
 
 """

@@ -23,7 +23,7 @@ $(function(){
                 '<h5 style="padding: 5px;"class="rounded">'+animal[i].nome_animal+'</h5>'+
                 '<div class="row " >'+
                     '<div class="col-md-auto" style="background-color: #CAABFF;">'+
-                    '<img src="image/logo.png" style="width: 200px;">'+
+                    '<img src="../backend/imagens/'+animal[i].imagem_postagem+'" style="width: 200px;">'+
                     '</div>'+
                     '<div class="col" style="background-color: #ABE5FF"; id="conteudo">'+   
                     '<p>'+conteudo+'</p>'+   
@@ -68,7 +68,39 @@ $(function(){
         };
     };
 
-$("#incluir_animal").click(function(){
+//$("#incluir_animal").click(function()
+
+
+$(document).on("click",".excluir_animal",function(){
+
+    var clicado = $(this).attr('id');
+    var nome = "excluir_";
+    var id_animal = clicado.substring(nome.length);
+
+    $.ajax({
+        url: 'http://localhost:5000/excluir_animal/'+id_animal,
+        type: 'DELETE',
+        dataType: 'json',
+        success: animalExcluido, 
+        error: erroAoExcluir    
+    });
+
+    function animalExcluido(resposta){
+        if (resposta.resultado == 'bele'){
+            alert("Animal exluido com sucesso!");
+            location.reload();
+        }
+        else{
+            alert(resposta.detalhes);
+        }
+    }
+    function erroAoExcluir(resposta){
+        alert("Erro ao excluir"+resposta.detalhes);
+    }
+});
+});     
+
+const registrar_ani = async() => {
 
     nome_animal = $("#nome_animal").val();
     familia = $("#familia").val();
@@ -76,7 +108,15 @@ $("#incluir_animal").click(function(){
     peso_medio = $("#peso_medio").val();
     habitat = $("#habitat").val();
     conteudo = $("#conteudo").val();
-    imagem_postagem = $("#imagem_postagem").val();
+
+    var img_file = document.getElementById("imagem_postagem").files[0];
+    if (img_file != undefined){
+        //Converte o BLOB em Base64 para passar por Json 
+        imagem_postagem = await readFile(img_file);
+    }
+    else{
+        imagem_postagem = null;
+    };
 
     dados = JSON.stringify({nome_animal:nome_animal, familia:familia,
         altura_media:altura_media, peso_medio:peso_medio,
@@ -115,33 +155,35 @@ $("#incluir_animal").click(function(){
         alert('Algo não correu bem, deuruim :p');
     }
     
-});
+};
 
-$(document).on("click",".excluir_animal",function(){
+function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#imagem_postagem')
+          .attr('src', e.target.result)
+          .width(200)
+          .height(200);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+};
 
-    var clicado = $(this).attr('id');
-    var nome = "excluir_";
-    var id_animal = clicado.substring(nome.length);
 
-    $.ajax({
-        url: 'http://localhost:5000/excluir_animal/'+id_animal,
-        type: 'DELETE',
-        dataType: 'json',
-        success: animalExcluido, 
-        error: erroAoExcluir    
+//Ler a imagem adicionada pelo usuário e converter em base64
+async function readFile(file_img) {
+
+    return new Promise((resolve, reject) => {
+        reader = new FileReader();
+
+        reader.onload = () => {
+            let base64 = (reader.result.split(",")[1]);
+            resolve(base64);
+        };
+
+        reader.readAsDataURL(file_img);
+    
     });
 
-    function animalExcluido(resposta){
-        if (resposta.resultado == 'bele'){
-            alert("Animal exluido com sucesso!");
-            location.reload();
-        }
-        else{
-            alert(resposta.detalhes);
-        }
-    }
-    function erroAoExcluir(resposta){
-        alert("Erro ao excluir"+resposta.detalhes);
-    }
-});
-}); 
+};
