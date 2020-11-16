@@ -40,7 +40,7 @@ class Cuidador(db.Model):
             "especialidade": self.especialidade,
             "idade": self.idade,
             "zoologicocuidadorid": self.zoologicocuidadorid,
-            "zoologicocuidador":self.zoologicocuidador
+            "zoologicocuidador":self.zoologicocuidador.json()
         }
 class Animal(db.Model):
     id = db.Column(db.Integer,primary_key=True)
@@ -70,9 +70,9 @@ class Animal(db.Model):
             "conteudo": self.conteudo,
             "imagem_postagem": self.imagem_postagem,
             "cuidadorid": self.cuidadorid,
-            "cuidadores": self.cuidadores,
+            "cuidadores": self.cuidadores.json(),
             "zoologicoanimalid": self.zoologicoanimalid,
-            "zoologicoanimal":self.zoologicoanimal
+            "zoologicoanimal":self.zoologicoanimal.json()
         }
         
 

@@ -4,6 +4,7 @@ import base64
 import os, io
 import secrets
 from flask import jsonify
+from config import db
 
 @app.route("/listar_animal")
 def animais():
