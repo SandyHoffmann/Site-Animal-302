@@ -14,7 +14,7 @@ class Animal(db.Model):
     peso_medio = db.Column(db.Float, nullable = False)
     habitat = db.Column(db.String(40), nullable = False)
     conteudo = db.Column(db.Text,nullable = False)
-    imagem_postagem = db.Column(db.String(40), nullable = True)
+    imagem_postagem = db.Column(db.String(40), nullable = False, default='imagens/logo.png')
     def __str__(self):
         return self.id+ str(self.nome_animal)+" ,"+self.familia+" ,"+ self.altura_media +" ,"+self.peso_medio+" ,"+self.habitat+" ,"+self.conteudo+" ,"+self.imagem_postagem
     

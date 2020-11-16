@@ -32,11 +32,11 @@ def incluir_animal():
     return resposta
     
 def salvar_imagem_base64(diretorio, base64str):
-    
     rhex = secrets.token_hex(9)
     nome_foto = rhex + ".png"
-    print(nome_foto)
-    caminho = os.path.join(app.root_path, diretorio, nome_foto)
+    nome_foto='imagens/'+nome_foto
+    caminho = os.path.join(app.root_path, nome_foto )
+    print(caminho)
     tamanho_imagem = (200, 200)
     
     image = base64.b64decode(str(base64str)) 
@@ -54,6 +54,7 @@ def excluir_animal(animal_id):
 
     try:
         animal = Animal.query.get_or_404(animal_id)
+        apagar_imagem(animal.imagem_postagem)
         db.session.delete(animal)
         db.session.commit()
     except Exception as e:
@@ -61,6 +62,10 @@ def excluir_animal(animal_id):
     resposta.headers.add("Access-Control-Allow-Origin", "*") 
     return resposta
 
+def apagar_imagem(foto):
+    if (foto != "imagens/logo.png"):
+        caminho = os.path.join(app.root_path, foto)
+        os.remove(caminho)
 app.run(debug=True)
 
 

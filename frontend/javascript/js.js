@@ -11,10 +11,10 @@ $(function(){
     });
 
     function listar_animal(animal) {
-        
         for (var i in animal) { 
             if (animal[i].conteudo){
                 conteudo = animal[i].conteudo
+
             }
             else{
                 conteudo = ' Não há o que mostrar aqui :3 '
@@ -23,7 +23,7 @@ $(function(){
                 '<h5 style="padding: 5px;"class="rounded">'+animal[i].nome_animal+'</h5>'+
                 '<div class="row " >'+
                     '<div class="col-md-auto" style="background-color: #CAABFF;">'+
-                    '<img src="../backend/imagens/'+animal[i].imagem_postagem+'" style="width: 200px;">'+
+                    '<img src="../backend/'+animal[i].imagem_postagem+'" style="width: 200px;">'+
                     '</div>'+
                     '<div class="col" style="background-color: #ABE5FF"; id="conteudo">'+   
                     '<p>'+conteudo+'</p>'+   
