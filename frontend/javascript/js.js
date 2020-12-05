@@ -62,6 +62,31 @@ $(function(){
             '</div>'+
             '</div>'+
             '</div>'+
+            '<div class="accordion" id="accordionExample">'+
+                '<div class="card"style="background-color: #ffccff;">'+
+                    '<div class="card-header" id="headingOne">'+
+                    '<h5 class="mb-0">'+
+                        '<button class="btn btn-link" type="button" style="background-color: #ff99c2;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+'Zoológico '+animal[i].zoologicoanimal.nome_zoologico+'</button>'+
+                    '</h5>'+
+                    '</div>'+
+                    '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">'+
+                    '<div class="card-body">'+ '<p> - Endereço: ' + animal[i].zoologicoanimal.endereco +'</p>'+
+                                                '<p> - Numero do Habitat: ' + animal[i].zoologicoanimal.numero_de_habitat + '</p>'+'</div>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="accordion" id="accordionExample">'+
+                '<div class="card" style="background-color: #ccb3ff;">'+
+                    '<div class="card-header" id="headingOne">'+
+                    '<h5 class="mb-0">'+
+                        '<button class="btn btn-link" type="button" style="background-color: #ff99c2;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+'Cuidadores </button>'+
+                    '</h5>'+
+                    '</div>'+
+                    '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">'+
+                    '<div class="card-body">'+ '<p> - Nome do cuidador: ' + animal[i].cuidadores.nome_cuidador +'</p>'+
+                                                '<p> - Especialidade: ' + animal[i].cuidadores.especialidade + '</p>'+
+                                                '<p> - Idade: ' + animal[i].cuidadores.idade + '</p>'+'</div>'+
+                    '</div>'+
+                '</div>'+
             '</div>'+
             '<br>'
             $('#familiaver').append(lin);
