@@ -63,30 +63,25 @@ $(function(){
             '</div>'+
             '</div>'+
             '<div class="accordion" id="accordionExample">'+
-                '<div class="card"style="background-color: #ffccff;">'+
+                '<details class="card"style="background-color: #ffccff;">'+
+                '<summary style="background-color: #ff99c2;"><p style:"display: inline-block;">'+'Zoológico '+animal[i].zoologicoanimal.nome_zoologico+'</p></summary>'+
                     '<div class="card-header" id="headingOne">'+
-                    '<h5 class="mb-0">'+
-                        '<button class="btn btn-link" type="button" style="background-color: #ff99c2;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+'Zoológico '+animal[i].zoologicoanimal.nome_zoologico+'</button>'+
-                    '</h5>'+
                     '</div>'+
-                    '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">'+
+                    '<div>'+
                     '<div class="card-body">'+ '<p> - Endereço: ' + animal[i].zoologicoanimal.endereco +'</p>'+
                                                 '<p> - Numero do Habitat: ' + animal[i].zoologicoanimal.numero_de_habitat + '</p>'+'</div>'+
                     '</div>'+
-                '</div>'+
-                '<div class="accordion" id="accordionExample">'+
-                '<div class="card" style="background-color: #ccb3ff;">'+
+                '</details>'+
+                '<details class="card" style="background-color: #ccb3ff;">'+
+                '<summary style="background-color: #ff99c2;"><p style:"display: inline-block;">'+'Cuidadores</p> </summary>'+
                     '<div class="card-header" id="headingOne">'+
-                    '<h5 class="mb-0">'+
-                        '<button class="btn btn-link" type="button" style="background-color: #ff99c2;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+'Cuidadores </button>'+
-                    '</h5>'+
                     '</div>'+
-                    '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">'+
+                    '<div>'+
                     '<div class="card-body">'+ '<p> - Nome do cuidador: ' + animal[i].cuidadores.nome_cuidador +'</p>'+
                                                 '<p> - Especialidade: ' + animal[i].cuidadores.especialidade + '</p>'+
                                                 '<p> - Idade: ' + animal[i].cuidadores.idade + '</p>'+'</div>'+
                     '</div>'+
-                '</div>'+
+                '</details>'+
             '</div>'+
             '<br>'
             $('#familiaver').append(lin);
@@ -124,7 +119,31 @@ $(document).on("click",".excluir_animal",function(){
     }
 });
 });     
+function listarclasses(combo_id,zooid, nome_classe) {
+    $.ajax({
+        url: 'http://localhost:5000/listar/'+nome_classe,
+        method: 'GET',
+        dataType: 'json', // os dados são recebidos no formato json
+        success: carregar, // chama a função listar para processar o resultado
+        error: function(problema) {
+            alert("erro, verifique backend ");
+        }
+    });
+    function carregar (dados) {
+        $('#'+combo_id).empty();
+        for (var i in dados) {
+            $('#'+combo_id).append(
+                $('<option class="yeah" name='+dados[i].id+'></option>').attr("value", 
+                    dados[i].zoologicocuidador.id).text(dados[i].nome_cuidador+' - '+dados[i].zoologicocuidador.nome_zoologico))
+                    ;
+    }               
+    }
+ // incluir exame realizado
+}
 
+function chamar() {
+    listarclasses("cuidadorid","zoologicoanimalid","Cuidador");
+};
 const registrar_ani = async() => {
 
     nome_animal = $("#nome_animal").val();
@@ -133,6 +152,9 @@ const registrar_ani = async() => {
     peso_medio = $("#peso_medio").val();
     habitat = $("#habitat").val();
     conteudo = $("#conteudo").val();
+    cuidadorid = $("#cuidadorid").find('option:selected').attr("name");
+    zoologicoanimalid = $("#cuidadorid").val();
+    alert(zoologicoanimalid)
 
     var img_file = document.getElementById("imagem_postagem").files[0];
     if (img_file != undefined){
@@ -146,7 +168,7 @@ const registrar_ani = async() => {
     dados = JSON.stringify({nome_animal:nome_animal, familia:familia,
         altura_media:altura_media, peso_medio:peso_medio,
         habitat:habitat,
-        conteudo:conteudo, imagem_postagem:imagem_postagem});
+        conteudo:conteudo, imagem_postagem:imagem_postagem,cuidadorid:cuidadorid,zoologicoanimalid:zoologicoanimalid});
 
     $.ajax({
         url: 'http://localhost:5000/incluir_animal',
@@ -209,6 +231,5 @@ async function readFile(file_img) {
 
         reader.readAsDataURL(file_img);
     
-    });
-
+    })
 };

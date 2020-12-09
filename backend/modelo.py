@@ -1,10 +1,6 @@
 from config import *
-app = Flask(__name__) 
-path = os.path.dirname(os.path.abspath(__file__)) 
-arquivobd = os.path.join(path, 'animal.db') 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+arquivobd 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
-db = SQLAlchemy(app)
+from config import app
+from config import db
 
 class Zoologico(db.Model):
     id = db.Column(db.Integer,primary_key=True)
@@ -77,6 +73,41 @@ class Animal(db.Model):
         
 
 if __name__ == "__main__":
+    cuidador1 = Cuidador(nome_cuidador = "José",especialidade = 'Veterinário',idade = 25, zoologicocuidadorid=1)
+    db.session.add(cuidador1)
+    db.session.commit()
+    print(cuidador1.json())
+    print(f"Cuidador: {cuidador1.json()}")
+
+    cuidador2 = Cuidador(nome_cuidador = "Fabiana",especialidade = 'Veterinária',idade = 66, zoologicocuidadorid=2)
+    db.session.add(cuidador2)
+    db.session.commit()
+    print(cuidador2.json())
+    print(f"Cuidador: {cuidador2.json()}")
+
+    cuidador3 = Cuidador(nome_cuidador = "Lampião",especialidade = 'Zoologo',idade = 33, zoologicocuidadorid=2)
+    db.session.add(cuidador3)
+    db.session.commit()
+    print(cuidador3.json())
+    print(f"Cuidador: {cuidador3.json()}")
+
+    cuidador4 = Cuidador(nome_cuidador = "Marcela",especialidade = 'Biologa',idade = 23, zoologicocuidadorid=3)
+    db.session.add(cuidador4)
+    db.session.commit()
+    print(cuidador4.json())
+    print(f"Cuidador: {cuidador4.json()}")
+    """
+    novo = Animal(nome_animal = "cachorro",familia = 'Canis Lupus',altura_media = 90,peso_medio = 6,habitat = 'cidade',conteudo = 'cachorro tradicional',imagem_postagem = None)
+    novo2 = Animal(nome_animal = "gato",familia = 'Felix Cat',altura_media = 60,peso_medio = 4,habitat = 'cidade',conteudo = 'miau miau miau',imagem_postagem = None)
+    db.session.add(novo)
+    db.session.add(novo2)
+    db.session.commit()
+    db.create_all()
+    cuidador1 = Cuidador(nome_cuidador = "richard",especialidade = 'zoologo',idade = 15, zoologicocuidadorid=2)
+    db.session.add(cuidador1)
+    db.session.commit()
+    print(cuidador1.json())
+    print(f"Cuidador: {cuidador1.json()}")
     db.create_all()
 
     zoologico1 = Zoologico(nome_zoologico = "Animais Felizes",endereco = 'Pomerode',numero_de_habitat = 9)
@@ -90,17 +121,45 @@ if __name__ == "__main__":
     print(cuidador1.json())
     print(f"Cuidador: {cuidador1.json()}")
 
-    animal = Animal(nome_animal = "vaca",familia = "bois",altura_media = 1, peso_medio=80, habitat="campo", conteudo="aaaaa", cuidadores=cuidador1,zoologicoanimal=zoologico1)
+    animal = Animal(nome_animal = "gato",familia = "felix gatus",altura_media = 0.3, peso_medio=4, habitat="cidade", conteudo="miaumiau", cuidadorid=1,zoologicoanimalid=1)
     db.session.add(animal)
     db.session.commit()
     print(animal.json())
 
-    """
-    novo = Animal(nome_animal = "cachorro",familia = 'Canis Lupus',altura_media = 90,peso_medio = 6,habitat = 'cidade',conteudo = 'cachorro tradicional',imagem_postagem = None)
-    novo2 = Animal(nome_animal = "gato",familia = 'Felix Cat',altura_media = 60,peso_medio = 4,habitat = 'cidade',conteudo = 'miau miau miau',imagem_postagem = None)
-    db.session.add(novo)
-    db.session.add(novo2)
+    zoologico1 = Zoologico(nome_zoologico = "Rave dos Carangueijo",endereco = 'Ilha dos Caribenhos',numero_de_habitat = 19)
+    db.session.add(zoologico1)
     db.session.commit()
-    db.create_all()
+    print(zoologico1.json())
 
+    zoologico1 = Zoologico(nome_zoologico = "Animais Felizes",endereco = 'Pomerode',numero_de_habitat = 9)
+    db.session.add(zoologico1)
+    db.session.commit()
+    print(zoologico1.json())
+
+    cuidador1 = Cuidador(nome_cuidador = "José",especialidade = 'Veterinário',idade = 25, zoologicocuidador=zoologico1)
+    db.session.add(cuidador1)
+    db.session.commit()
+    print(cuidador1.json())
+    print(f"Cuidador: {cuidador1.json()}")
+
+    animal = Animal(nome_animal = "gato",familia = "felix gatus",altura_media = 0.3, peso_medio=4, habitat="cidade", conteudo="miaumiau", cuidadorid=1,zoologicoanimalid=1)
+    db.session.add(animal)
+    db.session.commit()
+    print(animal.json())
+-------------------------------------------------------------------------------
+    zoologico1 = Zoologico(nome_zoologico = "Animais Felizes",endereco = 'Rua das Alamedas - Pomerode',numero_de_habitat = 9)
+    db.session.add(zoologico1)
+    db.session.commit()
+    print(zoologico1.json())
+
+
+    zoologico2 = Zoologico(nome_zoologico = "Ilha Fantasia",endereco = 'Rua Felipe de Carvalho - Ilha dos Caribenhos',numero_de_habitat = 19)
+    db.session.add(zoologico2)
+    db.session.commit()
+    print(zoologico2.json())
+
+    zoologico3 = Zoologico(nome_zoologico = "Selva Selvagem",endereco = 'Morro do Macaco - Indaial',numero_de_habitat = 66)
+    db.session.add(zoologico3)
+    db.session.commit()
+    print(zoologico3.json())
 """

@@ -63,8 +63,8 @@
       </nav>
     <main class="conteiner" id="familiaform">
 
-<form class="form border border-info rounded" id="form_incluir">
-    <div class="form-group p-5">
+<form class="form border border-info rounded" id="form_incluir" >
+    <div class="form-group p-5" >
       <h1 class="display-4 text-info">Compartilhe um animal conosco!</h1>
         <label for="recipient-name" class="col-form-label">Nome</label>
         <input type="text" class="form-control" id="nome_animal" placeholder="Nome">
@@ -87,6 +87,16 @@
               <input type="file" class="valid" onchange="readURL(this);" id="imagem_postagem"/>
 
             </div>
+          </div>
+        <button type="button" class="btn btn-primary" onClick="chamar();" style="background-color: rgb(171, 114, 218);">Clique para carregar os dados</button>
+
+        <div class="form-group">''
+          <label for="cuidadorid">Cuidador / Zoologico</label>
+          <select class="form-control" id="cuidadorid" value="zoologicoanimalid"
+          aria-describedby="cuidadorid" placeholder="cuidadorid">
+          <!-- opções serão preenchidas via javscript -->
+          </select>                                    
+          <small id="cuidadorid" class="form-text text-muted">Selecione o cuidador</small>
         </div>
         <button type="button" class="btn btn-primary" id="incluir_animal" onClick="registrar_ani();" >Submit</button>
 

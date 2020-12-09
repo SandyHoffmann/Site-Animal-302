@@ -5,6 +5,9 @@ import os, io
 import secrets
 from flask import jsonify
 from config import db
+from modelo import Zoologico
+from modelo import Cuidador
+from modelo import Animal
 
 @app.route("/listar_animal")
 def animais():
@@ -13,24 +16,6 @@ def animais():
     manda = jsonify(animaisjs)
     manda.headers.add("Access-Control-Allow-Origin", "*") 
     return manda
-    
-@app.route("/listar_cuidador")
-def cuidador():
-    cuidador = db.session.query(Cuidador).all()
-    cuidadorjs = [ x.json() for x in cuidador ]
-    b = jsonify(cuidadorjs)
-    b.headers.add("Access-Control-Allow-Origin", "*") 
-    return b
-
-@app.route("/listar_zoologico")
-def zoo():
-    zoo = db.session.query(Zoologico).all()
-    zoojs = [ x.json() for x in zoo ]
-    a = jsonify(zoojs)
-    a.headers.add("Access-Control-Allow-Origin", "*") 
-    return a
-
-
 
 @app.route('/incluir_animal',methods=['post'])
 def incluir_animal():
@@ -50,7 +35,28 @@ def incluir_animal():
             resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
     resposta.headers.add("Access-Control-Allow-Origin", "*") 
     return resposta
-    
+
+@app.route("/listar/Cuidador")
+def cuidador():
+    cuidador = db.session.query(Cuidador).all()
+    cuidadorjs = [ x.json() for x in cuidador ]
+    b = jsonify(cuidadorjs)
+    b.headers.add("Access-Control-Allow-Origin", "*") 
+    return b
+def zoo():
+    zoo = db.session.query(Zoologico).all()
+    zoojs = [ x.json() for x in zoo ]
+    a = jsonify(zoojs)
+    a.headers.add("Access-Control-Allow-Origin", "*") 
+    return a
+@app.route("/listar/Zoologico")
+def zoo():
+    zoo = db.session.query(Zoologico).all()
+    zoojs = [ x.json() for x in zoo ]
+    a = jsonify(zoojs)
+    a.headers.add("Access-Control-Allow-Origin", "*") 
+    return a
+
 def salvar_imagem_base64(diretorio, base64str):
     rhex = secrets.token_hex(9)
     nome_foto = rhex + ".png"
@@ -129,4 +135,23 @@ def incluir_animal():
     return resposta
 
 app.run(debug=True)
+
+---
+
+    function carregar (dados) {
+        $('#'+combo_id).empty();
+        for (var i in dados) {
+            if (nome_classe=='Zoologico') {
+            $('#'+combo_id).append(
+                $('<option></option>').attr("value", 
+                    dados[i].id).text(dados[i].nome_zoologico))
+                    ;
+        }
+        if (nome_classe=='Cuidador'){
+                $('#'+combo_id).append(
+                    $('<option></option>').attr("value", 
+                        dados[i].id).text(dados[i].nome_cuidador));
+            }
+    }
+    }
 """

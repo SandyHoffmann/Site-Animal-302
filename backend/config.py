@@ -5,9 +5,7 @@ from flask import jsonify, request
 from flask_cors import CORS
 import os 
 import json
-from model import Zoologico
-from model import Cuidador
-from model import Animal
+
 app = Flask(__name__) 
 CORS(app)
 path = os.path.dirname(os.path.abspath(__file__)) 
