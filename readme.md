@@ -11,7 +11,7 @@ O site de Animais consiste em uma página web onde se pode cadastrar animais jun
 
 O funcionamento do site ocorre com a utilização das bibliotecas Python SQLAlchemy  e Flask, com o auxilio do js.
 
-![image]()
+![image](https://user-images.githubusercontent.com/60969091/111725963-c5a5d580-8846-11eb-8672-4cde7da30017.png)
 <i>Foto da home do website</i>
 
 Tem-se então um servidor rodando a aplicação, por meio de rotas que desencadeiam as funcionalidades do site:
@@ -71,6 +71,17 @@ $(function(){
     });
 ~~~
 <i>Exemplo de função de js, encontrada no js.js</i>
+
+### 🔗 Imagens do Site em Funcioanmento
+
+![image](https://user-images.githubusercontent.com/60969091/111726404-ac515900-8847-11eb-89bf-2fb5ac272877.png)
+<i>Parte onde mostra os animais listados</i>
+
+![image](https://user-images.githubusercontent.com/60969091/111726618-0d792c80-8848-11eb-832a-46f90969e904.png)
+<i>Página para incluir animais</i>
+
+![image](https://user-images.githubusercontent.com/60969091/111726693-313c7280-8848-11eb-922d-f8e8fd7810f0.png)
+<i>Página com menu responsivo</i>
 
 ### 💻 Separação de Camadas
 
