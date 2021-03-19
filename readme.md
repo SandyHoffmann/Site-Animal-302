@@ -7,7 +7,7 @@ Esse projeto tem como motivação fazer um site que possa cadastrar, listar e ex
 
 O site de Animais consiste em uma página web onde se pode cadastrar animais juntamente de seu zoologico e de seu cuidador. tambem podendo excluir os mesmos. O site se encontra online no momento no site pythonanywhere podendo ser acessado no link abaixo.
 
-* :star: <p><a href="http://sandyhoffmann.pythonanywhere.com/html/home.html">Clique para acessar o Site Animal</a></p>
+* :star: <a href="http://sandyhoffmann.pythonanywhere.com/html/home.html">Clique para acessar o Site Animal</a>
 
 O funcionamento do site ocorre com a utilização das bibliotecas Python SQLAlchemy  e Flask, com o auxilio do js.
 
