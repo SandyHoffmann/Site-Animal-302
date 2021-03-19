@@ -90,9 +90,9 @@ O site é dividido em backend (que possui as configurações, o servidor routes 
 ### 📋 Como Executar o Programa
 
 Para executar o programa é necessário ter a linguagem python instalada no computador, e executar o requirements.txt.
-Rode o Backend e o servidor é para estar funcionando.
+Rode o Backend e o servidor estará funcionando. Depois é so acessar uma das páginas html e testar as funcionalidades do sistema.
 
-Se prefirir prefirir pode acessar online pelo <p><a href="http://sandyhoffmann.pythonanywhere.com/html/home.html">Site Animal</a></p>
+Se preferir, pode acessar online pelo <a href="http://sandyhoffmann.pythonanywhere.com/html/home.html">Site Animal</a>
 
 ```
 Flask
